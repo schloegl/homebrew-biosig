@@ -12,8 +12,8 @@ class Libbiosig < Formula
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "wget" => :build
   depends_on "gawk" => :build
-  depends_on "libiconv" => :build
-  depends_on "suite-sparse" => :build
+  depends_on "homebrew/dupes/libiconv" => :build
+  depends_on "homebrew/science/suite-sparse" => :build
   #depends_on "octave" => :recommended
 
   def install
