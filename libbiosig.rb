@@ -4,9 +4,10 @@
 
 class Libbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.0.src.tar.gz"
-  version "1.7.0"
-  sha1 "af05487f6dd82f802e4c3ffec1218f24cda0dcea"
+  #url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.0.src.tar.gz"
+  url "https://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c%2B%2B-1.7.1.src.tar.gz"
+  version "1.7.1"
+  sha1 "dd1fec39f22a1cc678b000f5e3b079d03bb01730"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
