@@ -6,7 +6,7 @@ class Mexbiosig < Formula
   homepage "http://biosig.sf.net"
   url "https://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c%2B%2B-1.7.1.src.tar.gz"
   version "1.7.1"
-  sha1 "dd1fec39f22a1cc678b000f5e3b079d03bb01730"
+  sha1 "226435bba4b46447e367f30bee304aa2dc6034ef"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
@@ -25,6 +25,11 @@ class Mexbiosig < Formula
     #                      "--disable-silent-rules",
     #                      "--prefix=#{prefix}"
 
+    ## build mex for MATLAB: needs to define MATLABDIR, or some heuristic is used
+    #system "MATLABDIR= make mex4m; done"
+    system "make mex4m; done"
+
+    ## build mex for Octave
     system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_octave" 
   end
 
