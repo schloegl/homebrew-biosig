@@ -12,10 +12,10 @@ class Mexbiosig < Formula
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "wget" => :build
   depends_on "libbiosig" => :build
-  depends_on "octave" => :recommended
+  depends_on "homebrew/science/octave" => :build
 
   def install
-    #system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
+    system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
@@ -27,10 +27,10 @@ class Mexbiosig < Formula
 
     ## build mex for MATLAB: needs to define MATLABDIR, or some heuristic is used
     #system "MATLABDIR= make mex4m; done"
-    system "make mex4m; done"
+    #system "make mex4m -B"
 
     ## build mex for Octave
-    system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_octave" 
+    system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make mex4o && sudo make install_octave"
   end
 
   test do
@@ -43,6 +43,6 @@ class Mexbiosig < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "save2gdf", "--help"
+    #system "octave --norc --eval 'addpath /usr/local/lib/octave/packages/mexbiosig: which mexSLOAD'"
   end
 end
