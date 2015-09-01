@@ -30,7 +30,7 @@ class Mexbiosig < Formula
     #system "make mex4m -B"
 
     ## build mex for Octave
-    system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make mex4o && sudo make install_octave"
+    system "sudo make install_mexbiosig"
   end
 
   test do
@@ -43,6 +43,6 @@ class Mexbiosig < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "octave --norc --eval 'addpath /usr/local/lib/octave/packages/mexbiosig: which mexSLOAD'"
+    system "octave --norc --eval 'pkg load mexbiosig; which mexSLOAD; exit;'"
   end
 end
