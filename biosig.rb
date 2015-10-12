@@ -4,13 +4,15 @@
 
 class Biosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.2.src.tar.gz"
-  version "1.7.2"
-  sha1 "f5fd7ffffc3525420830084e117da1aadd213be0"
+  #url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.2.src.tar.gz"
+  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.7.3-beta.src.tar.gz"
+  version "1.7.3-beta"
+  sha1 "cd0521d3c1e4995da50726e69e42e4331175065d"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "wget" => :build
+  depends_on "gnu-tar" => :build
   depends_on "libbiosig" => :build
   #depends_on "octave" => :recommended
 
