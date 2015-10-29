@@ -5,18 +5,19 @@
 class Mexbiosig < Formula
   homepage "http://biosig.sf.net"
   #url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.2.src.tar.gz"
-  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.7.3-beta.src.tar.gz"
-  version "1.7.3-beta"
-  sha1 "cd0521d3c1e4995da50726e69e42e4331175065d"
+  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.7.3-rc2.src.tar.gz"
+  version "1.7.3-rc2"
+  sha1 "6088bc5127500836b138dbae35866797e9213e8b"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "wget" => :build
+  depends_on "gnu-tar" => :build
   depends_on "libbiosig" => :build
   depends_on "homebrew/science/octave" => :build
 
   def install
-    system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
+    #system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
@@ -31,7 +32,7 @@ class Mexbiosig < Formula
     #system "make mex4m -B"
 
     ## build mex for Octave
-    system "sudo make install_mexbiosig"
+    system "make install_mexbiosig"
   end
 
   test do
