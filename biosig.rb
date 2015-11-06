@@ -5,9 +5,9 @@
 class Biosig < Formula
   homepage "http://biosig.sf.net"
   #url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.2.src.tar.gz"
-  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.7.3-rc2.src.tar.gz"
-  version "1.7.3-rc2"
-  sha1 "6088bc5127500836b138dbae35866797e9213e8b"
+  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.7.3-rc3.src.tar.gz"
+  version "1.7.3-rc3"
+  sha256 "73686491da48fcb8d69b49b80c8be57c9688f80e170513d84bff97c3a9202d23"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
