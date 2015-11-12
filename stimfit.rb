@@ -17,11 +17,12 @@ class Stimfit < Formula
   depends_on "boost" => :build
   depends_on "fftw"  => :build
   depends_on "hdf5"  => :build
-  #depends_on "lapack"  => :build
-  depends_on "python"  => :build
-  depends_on "homebrew/python/matplotlib" => :build
-  depends_on "homebrew/python/numpy" => :build
-  depends_on "schloegl/pyemf" => :build
+  ### currently, Python support is not ready, when it will the following dependencies
+  ### might become required
+  #depends_on "python"  => :build
+  #depends_on "homebrew/python/matplotlib" => :build
+  #depends_on "homebrew/python/numpy" => :build
+  #depends_on "schloegl/biosig/pyemf" => :build
   depends_on "swig"      => :build
   depends_on "wxwidgets" => :build
 
@@ -37,10 +38,22 @@ class Stimfit < Formula
 
     system "./configure --enable-python --with-biosig --with-pslope"
     
-    system "make"
+    system "wget https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static -O Makefile.static"
 
-    system "make install"
-    
+    system "WXCONF=wx-config PREFIX=/usr/local make -f Makefile.static"
+
+    system "install stimfit /usr/local/bin/stimfit"
+  end
+
+  def uninstall
+    system "rm /usr/local/bin/stimfit"
+  end
+
+  def caveats; <<-EOS.undent
+    This version of StimFit comes withouth python/wxpython support.
+    Accordingly, some features that require python are not available.
+
+    EOS
   end
 
   test do
