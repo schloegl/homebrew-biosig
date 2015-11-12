@@ -17,12 +17,10 @@ class Stimfit < Formula
   depends_on "boost" => :build
   depends_on "fftw"  => :build
   depends_on "hdf5"  => :build
-  ### currently, Python support is not ready, when it will the following dependencies
-  ### might become required
-  #depends_on "python"  => :build
-  #depends_on "homebrew/python/matplotlib" => :build
-  #depends_on "homebrew/python/numpy" => :build
-  #depends_on "schloegl/biosig/pyemf" => :build
+  depends_on "python"  => :build
+  depends_on "homebrew/python/matplotlib" => :build
+  depends_on "homebrew/python/numpy" => :build
+  depends_on "schloegl/biosig/pyemf" => :build
   depends_on "swig"      => :build
   depends_on "wxwidgets" => :build
 
