@@ -4,25 +4,29 @@
 
 class Stimfit < Formula
   homepage "http://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/v0.14.9windows.tar.gz"
-  version "0.14.9windows"
-  sha1 "c517ca54b0a58dfe41dd4930beacbb31ec465534"
+  url "https://github.com/neurodroid/stimfit/archive/v0.14.11windows.tar.gz"
+  version "0.14.11windows"
+  sha256 "afe155a7aab87f22154d8bb875d8650a29ad6eeea2c303c9f853ee3551b54f9f"
 
   # depends_on "cmake" => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
+  depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "wget" => :build
-  depends_on "libbiosig" => :build
   depends_on "automake" => :build
   depends_on "autoconf" => :build
+  depends_on "libbiosig" => :build
   depends_on "boost" => :build
-  depends_on "hdf5" => :build
-  depends_on "swig" => :build
+  depends_on "fftw"  => :build
+  depends_on "hdf5"  => :build
+  #depends_on "lapack"  => :build
+  depends_on "python"  => :build
+  depends_on "homebrew/python/matplotlib" => :build
+  depends_on "homebrew/python/numpy" => :build
+  depends_on "schloegl/pyemf" => :build
+  depends_on "swig"      => :build
   depends_on "wxwidgets" => :build
-  #depends_on "autoconf" => :build
-  #depends_on "octave" => :recommended
 
   def install
-    #ENV.deparallelize  # if your formula fails when building in parallel
+    ENV.deparallelize  # if your formula fails when building in parallel
     system "./autogen.sh && autoconf && automake"
 
     # Remove unrecognized options if warned by configure
@@ -35,8 +39,7 @@ class Stimfit < Formula
     
     system "make"
 
-    system "make install"	
-    #system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_save2gdf" 
+    system "make install"
     
   end
 
