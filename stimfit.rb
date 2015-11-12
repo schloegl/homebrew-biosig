@@ -28,7 +28,7 @@ class Stimfit < Formula
 
   def install
     ENV.deparallelize  # if your formula fails when building in parallel
-    system "./autogen.sh && autoconf && automake"
+    #system "./autogen.sh && autoconf && automake"
 
     # Remove unrecognized options if warned by configure
     #system "./configure", "--disable-debug",
