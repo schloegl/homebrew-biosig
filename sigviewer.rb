@@ -25,10 +25,10 @@ class Stimfit < Formula
     #                      "--prefix=#{prefix}"
 
     system "qmake && make"
-    
-    system "install ../release/build/sigviewer /usr/local/bin/"	
-    #system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_save2gdf" 
-    
+
+    system "install ../release/build/sigviewer /usr/local/bin/"
+    #system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_save2gdf"
+
   end
 
   test do

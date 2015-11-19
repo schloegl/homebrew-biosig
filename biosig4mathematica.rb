@@ -37,9 +37,9 @@ class Biosig4mathematica < Formula
   def caveats; <<-EOS.undent
     Biosig for Mathematica is installed in /usr/local/share/biosig/mathematica/sload.exe
     Usage: Start Mathematica and run
-    
+
         link=Install["/usr/local/share/biosig/mathematica/sload.exe"];
-        ?sload        		
+        ?sload
 
     EOS
   end
