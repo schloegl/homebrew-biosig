@@ -34,6 +34,16 @@ class Biosig4mathematica < Formula
     system "make mma -B && make install_mma"
   end
 
+  def caveats; <<-EOS.undent
+    Biosig for Mathematica is installed in /usr/local/share/biosig/mathematica/sload.exe
+    Usage: Start Mathematica and run
+    
+        link=Install["/usr/local/share/biosig/mathematica/sload.exe"];
+        ?sload        		
+
+    EOS
+  end
+
   test do
     # `test do` will create, run in and delete a temporary directory.
     #
