@@ -4,9 +4,9 @@
 
 class Stimfit < Formula
   homepage "http://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/v0.14.11windows.tar.gz"
-  version "0.14.11windows"
-  sha256 "afe155a7aab87f22154d8bb875d8650a29ad6eeea2c303c9f853ee3551b54f9f"
+  url "https://github.com/neurodroid/stimfit/archive/v0.14.14windows.tar.gz"
+  version "0.14.14windows"
+  sha256 "6f767db350fd3d5321eda12781983b6e8f6170e0efac685bd3af81967428"
 
   # depends_on "cmake" => :build
   depends_on :x11 # if your formula requires any X11/XQuartz components
