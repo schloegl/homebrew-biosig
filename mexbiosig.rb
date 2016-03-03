@@ -1,8 +1,8 @@
 class Mexbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.5.src.tar.gz"
-  version "1.7.5"
-  sha256 "49fdfcca3db92a440356cfbcb4026dc80257d635f1058e48145ac6f18df75483"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.6.src.tar.gz"
+  version "1.7.6"
+  sha256 "b341f2fe4a65275cefd367945fe8d8f1c418666baf832dfea7d9244bfb653fe1"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
