@@ -1,8 +1,8 @@
 class Biosig4mathematica < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.6.src.tar.gz"
-  version "1.7.6"
-  sha256 "b341f2fe4a65275cefd367945fe8d8f1c418666baf832dfea7d9244bfb653fe1"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.7.7.src.tar.gz"
+  version "1.7.7"
+  sha256 "b5574b5491964416853b21680c7259d511d5e17908e7d972f14ca6e5609b9727"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
