@@ -4,8 +4,8 @@
 
 class Stimfit < Formula
   homepage "http://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/v0.14.14windows.tar.gz"
-  version "0.14.14windows"
+  url "https://github.com/neurodroid/stimfit/archive/v0.14.15windows.tar.gz"
+  version "0.14.15windows"
   sha256 "6f767db350fd3d5321eda12781983b6e8f6170e0efac685bd3af81967428"
 
   # depends_on "cmake" => :build
