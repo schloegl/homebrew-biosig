@@ -25,6 +25,7 @@ class Libbiosig < Formula
     #                      "--disable-silent-rules",
     #                      "--prefix=#{prefix}"
 
+    system "gsed -i '/CFLAGS.*-std=gnu11/d' Makefile"
     system "make && make install"
   end
 
