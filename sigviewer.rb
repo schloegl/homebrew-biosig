@@ -2,11 +2,11 @@
 #                /usr/local/Library/Contributions/example-formula.rb
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 
-class Stimfit < Formula
-  homepage "http://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/v0.14.11windows.tar.gz"
-  version "0.14.11windows"
-  sha1 "ac7e65529de65e7a6df7b625a8ffe9674b08599b"
+class Sigviewer < Formula
+  homepage "https://sigviewer.sf.net"
+  url "https://sourceforge.net/projects/sigviewer/files/0.5.2/sigviewer-0.5.2-src.tar.gz"
+  version "0.5.2"
+  sha256 "2deb65c881fee46f921ab2299e5c0494113bd7c05a5d9ab328f3b7c839a94ba8"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
