@@ -19,17 +19,14 @@ class Libbiosig < Formula
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
-    patch do patch-v184-brew.diff end
-
     # Remove unrecognized options if warned by configure
     #system "./configure", "--disable-debug",
     #                      "--disable-dependency-tracking",
     #                      "--disable-silent-rules",
     #                      "--prefix=#{prefix}"
 
-    system "make"
-    system "make","install"
-    system "install"
+    system "PREFIX=$HOMEBREW_PREFIX  make"
+    system "PREFIX=$HOMEBREW_CELLAR/libbiosig/1.8.4/ make install"
   end
 
   test do
