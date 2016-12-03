@@ -19,14 +19,17 @@ class Libbiosig < Formula
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
+    patch do patch-v184-brew.diff end
+
     # Remove unrecognized options if warned by configure
     #system "./configure", "--disable-debug",
     #                      "--disable-dependency-tracking",
     #                      "--disable-silent-rules",
     #                      "--prefix=#{prefix}"
 
-    system "gsed -i '/CFLAGS.*-std=gnu11/d' Makefile"
-    system "make libbiosig && make install libbiosig"
+    system "make"
+    system "make","install"
+    system "install"
   end
 
   test do
