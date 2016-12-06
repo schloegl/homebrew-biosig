@@ -10,12 +10,11 @@ class Libbiosig < Formula
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
-  depends_on "homebrew/dupes/libiconv" => :build
   depends_on "homebrew/science/suite-sparse" => :build
   #depends_on "octave" => :recommended
 
   def install
-    #system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
+    system "wget http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw -O Makefile "
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
