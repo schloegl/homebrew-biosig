@@ -10,7 +10,6 @@ class Stimfit < Formula
 
   # depends_on "cmake" => :build
   depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "wget" => :build
   depends_on "automake" => :build
   depends_on "autoconf" => :build
   depends_on "libbiosig" => :build
@@ -36,7 +35,7 @@ class Stimfit < Formula
 
     system "./configure --enable-python --with-biosig --with-pslope"
     
-    system "wget https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static -O Makefile.static"
+    system "curl -L https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static > Makefile.static"
 
     system "WXCONF=wx-config PREFIX=/usr/local make -f Makefile.static"
 

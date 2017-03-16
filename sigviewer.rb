@@ -10,7 +10,6 @@ class Sigviewer < Formula
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "wget" => :build
   depends_on "libbiosig" => :build
   depends_on "qt" => :build
 

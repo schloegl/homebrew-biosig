@@ -6,7 +6,6 @@ class Pyemf < Formula
 
   # depends_on "cmake" => :build
   #depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "wget" => :build
   depends_on "gnu-tar" => :build
   depends_on "python"  => :build
 
