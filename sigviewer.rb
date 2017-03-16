@@ -8,8 +8,6 @@ class Sigviewer < Formula
   version "0.5.2"
   sha256 "2deb65c881fee46f921ab2299e5c0494113bd7c05a5d9ab328f3b7c839a94ba8"
 
-  # depends_on "cmake" => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "libbiosig" => :build
   depends_on "qt" => :build
 

@@ -5,13 +5,8 @@ class Libbiosig < Formula
   version "1.8.4"
   sha256 "bdb0ee11f4950f1e433148efa95b5ffedf91f62f3625e43c62b5b420bd3e0da5"
 
-  # depends_on "cmake" => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "gawk" => :build
-  depends_on "gnu-sed" => :build
-  depends_on "gnu-tar" => :build
   depends_on "homebrew/science/suite-sparse" => :build
-  #depends_on "octave" => :recommended
 
   def install
     #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw > Makefile"
