@@ -4,11 +4,7 @@ class Biosig < Formula
   version "1.8.5"
   sha256 "9fa7a50ab032dcf21b941e93c21b43a7b75f5ffc38a02b5bddc65b8bd33e2aea"
 
-  # depends_on "cmake" => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "gnu-tar" => :build
   depends_on "libbiosig" => :build
-  #depends_on "octave" => :recommended
 
   def install
     #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw > Makefile"

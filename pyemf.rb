@@ -4,9 +4,6 @@ class Pyemf < Formula
   version "2.0.0"
   sha256 "6960341434b9683926fba01f1fd81738234848c3f25883fa44c84b9833cf2354"
 
-  # depends_on "cmake" => :build
-  #depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "gnu-tar" => :build
   depends_on "python"  => :build
 
   def install

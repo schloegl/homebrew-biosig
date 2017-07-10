@@ -8,7 +8,6 @@ class Stimfit < Formula
   version "0.14.15windows"
   sha256 "6f767db350fd3d5321eda12781983b6e8f6170e0efac685bd3af81967428"
 
-  # depends_on "cmake" => :build
   depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "automake" => :build
   depends_on "autoconf" => :build
