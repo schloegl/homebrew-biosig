@@ -1,8 +1,8 @@
-class Biosig < Formula
+class Libbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.8.5.src.tar.gz"
-  version "1.8.5"
-  sha256 "9fa7a50ab032dcf21b941e93c21b43a7b75f5ffc38a02b5bddc65b8bd33e2aea"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0.src.tar.gz"
+  version "1.9.0"
+  sha256 "36d623a803ef67882a0cb4f175abdab18c41d46dc775cfbee68b5c3bed10654c"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
@@ -11,17 +11,18 @@ class Biosig < Formula
   #depends_on "octave" => :recommended
 
   def install
-    #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw > Makefile"
+    system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
+    system "./configure", "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}"
 
-    system "prefix=$HOMEBREW_CELLAR/libbiosig/1.8.5/ make install_tools"
+    system "make"
+    system "make","install_tools"
   end
 
   test do

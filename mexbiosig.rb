@@ -1,8 +1,8 @@
 class Mexbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://pub.ist.ac.at/~schloegl/biosig/prereleases/biosig4c++-1.8.4c.src.tar.gz"
-  version "1.8.4"
-  sha256 "bdb0ee11f4950f1e433148efa95b5ffedf91f62f3625e43c62b5b420bd3e0da5"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0.src.tar.gz"
+  version "1.9.0"
+  sha256 "36d623a803ef67882a0cb4f175abdab18c41d46dc775cfbee68b5c3bed10654c"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
@@ -11,22 +11,22 @@ class Mexbiosig < Formula
   depends_on "homebrew/science/octave" => :build
 
   def install
-    #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile?format=raw > Makefile"
+    system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
+    system "./configure", "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}"
 
     ## build mex for MATLAB: needs to define MATLABDIR, or some heuristic is used
     #system "MATLABDIR= make mex4m; done"
     #system "make mex4m -B"
 
     ## build mex for Octave
-    system "make install_mexbiosig"
+    system "make" "install_mexbiosig"
   end
 
   test do
