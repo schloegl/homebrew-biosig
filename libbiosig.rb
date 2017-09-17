@@ -1,8 +1,8 @@
 class Libbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0.src.tar.gz"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0a.src.tar.gz"
   version "1.9.0"
-  sha256 "36d623a803ef67882a0cb4f175abdab18c41d46dc775cfbee68b5c3bed10654c"
+  sha256 "65523713552e0688c3448092903c1b9cf2b4e407da2daab362ec3d022d6c7490"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
@@ -13,7 +13,7 @@ class Libbiosig < Formula
   #depends_on "octave" => :recommended
 
   def install
-    system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
+    #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
