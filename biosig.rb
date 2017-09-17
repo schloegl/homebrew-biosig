@@ -1,4 +1,4 @@
-class Libbiosig < Formula
+class Biosig < Formula
   homepage "http://biosig.sf.net"
   url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0.src.tar.gz"
   version "1.9.0"
