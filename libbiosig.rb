@@ -14,10 +14,12 @@ class Libbiosig < Formula
 
   def install
     #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
+    system "sed -i '/gnu11\|gnu++11/ s/^/#/g' Makefile.in"
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
+
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
