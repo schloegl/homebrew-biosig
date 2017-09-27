@@ -6,13 +6,14 @@ class Biosig < Formula
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
+  depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "libbiosig" => :build
   #depends_on "octave" => :recommended
 
   def install
     #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
-    system "sed -i '/gnu11\|gnu++11/ s/^/#/g' Makefile.in"
+    system "gsed -i '/gnu11\|gnu++11/ s/^/#/g' Makefile.in"
 
     #ENV.deparallelize  # if your formula fails when building in parallel
 
