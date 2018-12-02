@@ -10,12 +10,11 @@ class Sigviewer < Formula
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "libbiosig" => :build
+  depends_on "biosig" => :build
   depends_on "qt" => :build
 
   def install
     #ENV.deparallelize  # if your formula fails when building in parallel
-    #system "./autogen.sh && autoconf && automake"
 
     # Remove unrecognized options if warned by configure
     #system "./configure", "--disable-debug",

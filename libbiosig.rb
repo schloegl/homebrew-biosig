@@ -1,8 +1,8 @@
 class Libbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.0a.src.tar.gz"
-  version "1.9.0"
-  sha256 "65523713552e0688c3448092903c1b9cf2b4e407da2daab362ec3d022d6c7490"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
+  version "1.9.3"
+  sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
@@ -10,12 +10,8 @@ class Libbiosig < Formula
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "suite-sparse" => :build
-  #depends_on "octave" => :recommended
 
   def install
-    #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
-    system "gsed -i '/gnu11\|gnu++11/ s/^/#/g' Makefile.in"
-
     #ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
