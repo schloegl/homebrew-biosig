@@ -10,6 +10,7 @@ class Libbiosig < Formula
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "suite-sparse" => :build
+  depends_on "pkg-config" => :install
 
   def install
     #ENV.deparallelize  # if your formula fails when building in parallel
@@ -22,6 +23,7 @@ class Libbiosig < Formula
                           "--prefix=#{prefix}"
 
     system "make"
+    system "make","install_headers"
     system "make","install_libbiosig"
   end
 
