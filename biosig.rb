@@ -1,6 +1,6 @@
 class Biosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.2.src.tar.gz"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
   version "1.9.3"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
@@ -10,7 +10,7 @@ class Biosig < Formula
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "suite-sparse" => :build
-  depends_on "libb64" => :build
+  depends_on "libb64" => :recommended
   #depends_on "octave" => :recommended
 
   def install
