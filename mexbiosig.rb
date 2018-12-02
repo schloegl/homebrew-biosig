@@ -7,24 +7,18 @@ class Mexbiosig < Formula
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "gnu-tar" => :build
-  depends_on "biosig" => :build
-  depends_on "homebrew/science/octave" => :build
+  depends_on "libbiosig" => :build
+  depends_on "octave" => :build
 
   def install
     #ENV.deparallelize  # if your formula fails when building in parallel
-
-    # Remove unrecognized options if warned by configure
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
 
     ## build mex for MATLAB: needs to define MATLABDIR, or some heuristic is used
     #system "MATLABDIR= make mex4m; done"
     #system "make mex4m -B"
 
     ## build mex for Octave
-    system "make" "install_mexbiosig"
+    system "octave","--eval","'pkg install https://pub.ist.ac.at/~schloegl/biosig/prereleases/mexbiosig-1.9.3.src.tar.gz'"
   end
 
   test do
