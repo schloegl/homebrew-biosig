@@ -1,6 +1,7 @@
 class Biosig < Formula
-  homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
+  desc "Biosig tools"
+  homepage "https://biosig.sourceforge.io"
+  url "https://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
   version "1.9.3"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
@@ -9,12 +10,12 @@ class Biosig < Formula
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
+  # depends_on "libb64" => :build
   depends_on "suite-sparse" => :build
-  depends_on "libb64" => :recommended
-  #depends_on "octave" => :recommended
+  # depends_on "octave" => :recommended
 
   def install
-    #ENV.deparallelize  # if your formula fails when building in parallel
+    # ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
     system "./configure", "--disable-debug",
@@ -23,7 +24,12 @@ class Biosig < Formula
                           "--prefix=#{prefix}"
 
     system "make"
-    system "make","install"
+    ## system "make", "-C", "python", "-B"
+    system "make", "install_tools"
+  end
+
+  def uninstall
+    system "make", "uninstall_tools"
   end
 
   test do
@@ -36,6 +42,6 @@ class Biosig < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "save2gdf", "--help"
+    system "#{bin}/save2gdf", "--help"
   end
 end
