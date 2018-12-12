@@ -1,6 +1,7 @@
 class Libbiosig < Formula
-  homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
+  desc "Biosig library"
+  homepage "https://biosig.sourceforge.io"
+  url "https://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
   version "1.9.3"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
@@ -9,22 +10,21 @@ class Libbiosig < Formula
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
+  depends_on "pkg-config" => :build
   depends_on "suite-sparse" => :build
-  depends_on "pkg-config" => :install
 
   def install
-    #ENV.deparallelize  # if your formula fails when building in parallel
+    # ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
-
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
 
     system "make"
-    system "make","install_headers"
-    system "make","install_libbiosig"
+    system "make", "install_headers"
+    system "make", "install_libbiosig"
   end
 
   test do
@@ -37,6 +37,6 @@ class Libbiosig < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "save2gdf", "--help"
+    system "ls", "/usr/local/lib/libbiosig.dylib"
   end
 end
