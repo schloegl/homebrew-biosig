@@ -10,6 +10,7 @@ class Biosig < Formula
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
+  depends_on "libbiosig" => :build
   # depends_on "libb64" => :build
   depends_on "suite-sparse" => :build
   # depends_on "octave" => :recommended
