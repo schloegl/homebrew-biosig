@@ -1,31 +1,18 @@
-# Documentation: https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md
-#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Libb64 < Formula
-  desc "base64 encoding/decoding library"
-  homepage "http://libb64.sourceforge.net/"
+  desc "Base64 encoding/decoding library"
+  homepage "https://libb64.sourceforge.io/"
   url "https://sourceforge.net/projects/libb64/files/libb64/libb64/libb64-1.2.src.zip"
-  version "1.2"
+  # version "1.2"
   sha256 "343d8d61c5cbe3d3407394f16a5390c06f8ff907bd8d614c16546310b689bfd3"
 
-  # depends_on "cmake" => :build
-  #depends_on :x11 # if your formula requires any X11/XQuartz components
-
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-
-    # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
-
-    # system "cmake", ".", *std_cmake_args
-
-    #system "PREFIX=$HOMEBREW_PREFIX  make"
-    system "install b64/include $HOMEBREW_CELLAR/libb64/1.2/include/"
-    # if this fails, try separate make/make install steps
+    system "make"
+    bin.mkpath
+    bin.install "base64/base64"
+    include.mkpath
+    include.install "include/b64"
+    lib.mkpath
+    lib.install "src/libb64.a"
   end
 
   test do
@@ -38,6 +25,6 @@ class Libb64 < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    system "#{bin}/base64"
   end
 end
