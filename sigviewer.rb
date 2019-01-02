@@ -1,32 +1,26 @@
-# Documentation: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
-#                /usr/local/Library/Contributions/example-formula.rb
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Sigviewer < Formula
-  homepage "https://sigviewer.sf.net"
-  url "https://sourceforge.net/projects/sigviewer/files/0.5.2/sigviewer-0.5.2-src.tar.gz"
-  version "0.5.2"
-  sha256 "2deb65c881fee46f921ab2299e5c0494113bd7c05a5d9ab328f3b7c839a94ba8"
+  desc "Sigviewer"
+  homepage "https://github.com/schloegl/sigviewer"
+  # url "https://github.com/schloegl/sigviewer/archive/master.zip"
+  #version "0.6.2"
+  url "https://github.com/cbrnr/sigviewer/archive/v0.6.2.tar.gz"
+  sha256 "ddbe6a96802af73c0cee8dfc80d3ba4ca47f9bce9492713cf6da6aa049244b09"
 
-  # depends_on "cmake" => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "biosig" => :build
+  depends_on "gcc@7" => :build
+  depends_on "libbiosig" => :build
+  depends_on "libxdf" => :build
+  depends_on "pkg-config" => :build
+  depends_on "gnu-sed" => :build
   depends_on "qt" => :build
 
   def install
-    #ENV.deparallelize  # if your formula fails when building in parallel
+    # apply patch
+    system "gsed", "-i", "s|$$PWD/external/|/usr/local/|g", "sigviewer.pro"
 
-    # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
+    system "qmake", "sigviewer.pro"
+    system "make"
 
-    system "qmake && make"
-
-    system "install ../release/build/sigviewer /usr/local/bin/"
-    #system "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make install_save2gdf"
-
+    bin.install "bin/release/sigviewer.app/Contents/MacOS/sigviewer"
   end
 
   test do
@@ -39,6 +33,6 @@ class Sigviewer < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "save2gdf", "--help"
+    system "sigviewer", "--help"
   end
 end
