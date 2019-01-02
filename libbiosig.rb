@@ -1,7 +1,8 @@
 class Libbiosig < Formula
   desc "Biosig library"
   homepage "https://biosig.sourceforge.io"
-  url "https://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
+
+  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
   # version "1.9.3"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 

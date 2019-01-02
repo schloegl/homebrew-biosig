@@ -1,8 +1,7 @@
 class Libb64 < Formula
   desc "Base64 encoding/decoding library"
   homepage "https://libb64.sourceforge.io/"
-  url "https://sourceforge.net/projects/libb64/files/libb64/libb64/libb64-1.2.src.zip"
-  # version "1.2"
+  url "https://downloads.sourceforge.net/project/libb64/libb64/libb64/libb64-1.2.src.zip"
   sha256 "343d8d61c5cbe3d3407394f16a5390c06f8ff907bd8d614c16546310b689bfd3"
 
   def install
