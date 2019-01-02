@@ -1,55 +1,52 @@
-# Documentation: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
-#                /usr/local/Library/Contributions/example-formula.rb
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Stimfit < Formula
-  homepage "http://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/v0.14.15windows.tar.gz"
-  version "0.14.15windows"
-  sha256 "6f767db350fd3d5321eda12781983b6e8f6170e0efac685bd3af81967428"
+  desc "Stimfit"
+  homepage "https://stimfit.org"
+  url "https://github.com/neurodroid/stimfit/archive/v0.15.8windows.tar.gz"
+  version "0.15.8"
+  sha256 "8a5330612245d3f442ed640b0df91028aa4798301bb6844eaf1cf9b463dfc466"
 
-  # depends_on "cmake" => :build
-  depends_on :x11 # if your formula requires any X11/XQuartz components
-  depends_on "automake" => :build
   depends_on "autoconf" => :build
-  depends_on "libbiosig" => :build
+  depends_on "automake" => :build
   depends_on "boost" => :build
   depends_on "fftw"  => :build
   depends_on "hdf5"  => :build
-  depends_on "python"  => :build
-  depends_on "homebrew/python/matplotlib" => :build
-  depends_on "homebrew/python/numpy" => :build
-  depends_on "schloegl/biosig/pyemf" => :build
-  depends_on "swig"      => :build
-  depends_on "wxwidgets" => :build
+  depends_on "libbiosig" => :build
+  depends_on "libtool" => :build
+  depends_on "pkg-config" => :build
+  # depends_on "python"  => :build
+  # depends_on "numpy" => :build
+  # depends_on "matplotlib" => :build
+  # depends_on "schloegl/biosig/pyemf" => :build
+  depends_on "swig" => :build
+  depends_on "wxmac" => :build
+  depends_on :x11
 
   def install
-    ENV.deparallelize  # if your formula fails when building in parallel
+    ENV.deparallelize
     system "./autogen.sh && autoconf && automake"
 
-    # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
+    system "./configure", "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}",
+                          "--enable-python", "--with-biosig2", "--with-pslope"
 
-    system "./configure --enable-python --with-biosig --with-pslope"
-    
+    ### TODO ###
+    # cp "/Users/testuser/src/stimfit/Makefile.static", "Makefile.static"
     system "curl -L https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static > Makefile.static"
 
-    system "WXCONF=wx-config PREFIX=/usr/local make -f Makefile.static"
-
-    system "install stimfit /usr/local/bin/stimfit"
+    system "make", "WXCONF=wx-config", "-f", "Makefile.static"
+    bin.install "stimfit"
   end
 
   def uninstall
-    system "rm /usr/local/bin/stimfit"
+    rm "#{bin}/stimfit"
   end
 
-  def caveats; <<-EOS.undent
-    This version of StimFit comes withouth python/wxpython support.
+  def caveats
+    <<~EOS
+    This version of StimFit comes without python/wxpython support.
     Accordingly, some features that require python are not available.
-
     EOS
   end
 
@@ -58,11 +55,11 @@ class Stimfit < Formula
     #
     # This test will fail and we won't accept that! It's enough to just replace
     # "false" with the main program this formula installs, but it'd be nice if you
-    # were more thorough. Run the test with `brew test biosig4c%2B%2B`. Options passed
+    # were more thorough. Run the test with `brew test stimfit`. Options passed
     # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    #system "save2gdf", "--help"
+    system "#{bin}/stimfit"
   end
 end
