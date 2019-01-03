@@ -13,7 +13,11 @@ class Libxdf < Formula
     include.mkpath
     include.install "./xdf.h"
     lib.mkpath
-    lib.install "libxdf.dylib"
+    if OS.mac? then
+      lib.install "libxdf.dylib"
+    else
+      lib.install "libxdf.so"
+    end
     lib.install "libxdf.a"
   end
 
@@ -27,6 +31,6 @@ class Libxdf < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "ls", "/usr/local/lib/libxdf.{a,dylib}"
+    system "ls", "#{lib}/libxdf.*"
   end
 end
