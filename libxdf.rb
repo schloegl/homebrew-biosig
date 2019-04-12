@@ -1,8 +1,8 @@
 class Libxdf < Formula
   desc "C++ library for loading XDF files"
   homepage "https://github.com/Yida-Lin/libxdf"
-  url "https://github.com/Yida-Lin/libxdf/archive/v0.98.tar.gz"
-  sha256 "61e9b377c72f7c96b548971f265c575c71aeeb1692b4f49ddb0b7e1d03ddbdb7"
+  url "https://github.com/xdf-modules/libxdf/archive/v0.99.tar.gz"
+  sha256 "af66f6c1be5d9342fa33bc2a3b34c5a962db37d10623df57d352a213fe5201d1"
 
   depends_on "cmake" => :build
 
