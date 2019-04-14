@@ -40,23 +40,6 @@ class Sigviewer < Formula
 end
 
 __END__
-diff --git a/sigviewer.pro b/sigviewer.pro
-index 39a9bb5..e063cd9 100644
---- a/sigviewer.pro
-+++ b/sigviewer.pro
-@@ -41,11 +41,9 @@ macx {
- }
- 
- INCLUDEPATH += \
--    $$PWD/external/include \
-     $$PWD/src
- 
- LIBS += \
--    -L$$PWD/external/lib \
-     -lbiosig -lxdf
- 
- RESOURCES = $$PWD/src/src.qrc
-
 diff --git a/src/file_handling/file_signal_reader.h b/src/file_handling/file_signal_reader.h
 index eeac188..39d3207 100644
 --- a/src/file_handling/file_signal_reader.h
@@ -337,3 +320,16 @@ index 2770d0b..49ee5a2 100644
      file_menu_->addSeparator ();
      file_menu_->addAction (action("Exit"));
 
+diff --git a/src/gui_impl/dialogs/about_dialog.ui b/src/gui_impl/dialogs/about_dialog.ui
+index 4223e03..7f38fb6 100644
+--- a/src/gui_impl/dialogs/about_dialog.ui
++++ b/src/gui_impl/dialogs/about_dialog.ui
+@@ -36,7 +36,7 @@
+         </sizepolicy>
+        </property>
+        <property name="text">
+-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SigViewer&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Version VERSION_MAJOR.VERSION_MINOR.VERSION_BUILD&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/cbrnr/sigviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;github.com/cbrnr/sigviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GNU GPL&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
++        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SigViewer&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Version VERSION_MAJOR.VERSION_MINOR.VERSION_BUILD&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/schloegl/sigviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;github.com/schloegl/sigviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GNU GPL&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+ </string>
+        </property>
+        <property name="textFormat">
