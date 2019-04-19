@@ -8,14 +8,12 @@ class Edfbrowser < Formula
   depends_on "gcc@7" => :build
   depends_on "qt" => :build
 
-  patch :DATA
-
   def install
 
     system "qmake"
     system "make"
 
-    bin.install "edfbrowser.app/Contents/MacOS/sigviewer"
+    bin.install "edfbrowser.app/Contents/MacOS/edfbrowser"
   end
 
   test do
@@ -31,5 +29,3 @@ class Edfbrowser < Formula
     system "#{bin}/edfbrowser", "--help"
   end
 end
-
-__END__
