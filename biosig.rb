@@ -3,7 +3,7 @@ class Biosig < Formula
   homepage "https://biosig.sourceforge.io"
   url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.4.src.tar.gz"
   version "1.9.4"
-  sha256 "15c31173bf9b2fdf3a3764e2e422a30f9645cbbad12ba7e507d993ae562a3628"
+  sha256 "f32339e14bf24faf37f2ddeaeeb1862a5b26aac6bb872a2c33b6684bca0ed02e"
 
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
