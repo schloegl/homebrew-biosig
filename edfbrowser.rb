@@ -5,7 +5,7 @@ class Edfbrowser < Formula
   url "https://www.teuniz.net/edfbrowser/edfbrowser_167_source.tar.gz"
   sha256 "fd3e1fbf5926817403ac3bef41f77cddfd921bc6c2fd63de23962f00f51128ed"
 
-  depends_on "gcc@7" => :build
+  depends_on "gcc" => :build
   depends_on "qt" => :build
 
   def install
