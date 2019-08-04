@@ -1,16 +1,15 @@
 class Biosig < Formula
   desc "Tools for biomedical signal processing and conversion"
   homepage "https://biosig.sourceforge.io"
-  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.4.src.tar.gz"
-  version "1.9.4"
-  sha256 "f32339e14bf24faf37f2ddeaeeb1862a5b26aac6bb872a2c33b6684bca0ed02e"
+  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.5.src.tar.gz"
+  version "1.9.5"
+  sha256 "20e72a5a07d1bf8baa649efe437b4d3ed99944f0e4dfc1fbe23bfbe4d9749ed5"
 
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "libb64" => :build
   depends_on "libbiosig" => :build
-  depends_on "suite-sparse" => :build
 
   def install
     system "./configure", "--disable-debug",
