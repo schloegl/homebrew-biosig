@@ -13,7 +13,7 @@ class Libbiosig < Formula
   depends_on "tinyxml" => :build
   depends_on "suite-sparse" => :build
 
-  patch :DATA
+  #patch :DATA
 
   def install
     system "./configure", "--disable-debug",
