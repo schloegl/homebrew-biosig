@@ -1,16 +1,16 @@
 class Sigviewer < Formula
   desc "Sigviewer"
   homepage "https://github.com/schloegl/sigviewer"
-  version "0.6.4"
+  # version "0.6.4"
   url "https://github.com/cbrnr/sigviewer/archive/v0.6.4.tar.gz"
   sha256 "e64516b0d5a2ac65b1ef496a6666cdac8919b67eecd8d5eb6b7cbf2493314367"
 
   depends_on "gcc" => :build
   depends_on "gnu-sed" => :build
-  depends_on "libbiosig" => :build
-  depends_on "libxdf" => :build
   depends_on "pkg-config" => :build
-  depends_on "qt" => :build
+  depends_on "libbiosig"
+  depends_on "libxdf"
+  depends_on "qt"
 
   patch :DATA
 

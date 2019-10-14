@@ -1,12 +1,12 @@
 class Edfbrowser < Formula
   desc "Edfbrowser"
   homepage "https://www.teuniz.net/edfbrowser/"
-  version "1.67"
-  url "https://www.teuniz.net/edfbrowser/edfbrowser_167_source.tar.gz"
-  sha256 "fd3e1fbf5926817403ac3bef41f77cddfd921bc6c2fd63de23962f00f51128ed"
+  version "1.70"
+  url "https://www.teuniz.net/edfbrowser/edfbrowser_170_source.tar.gz"
+  sha256 "206a19e47416c278fa161c6d9bd78a3a7dd5f2c2b88deb270fb3495ffd3f659d"
 
   depends_on "gcc" => :build
-  depends_on "qt" => :build
+  depends_on "qt"
 
   def install
 

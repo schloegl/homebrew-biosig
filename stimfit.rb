@@ -2,15 +2,11 @@ class Stimfit < Formula
   desc "Stimfit"
   homepage "https://stimfit.org"
   url "https://github.com/neurodroid/stimfit/archive/v0.15.8windows.tar.gz"
-  version "0.15.8"
+  # version "0.15.8"
   sha256 "8a5330612245d3f442ed640b0df91028aa4798301bb6844eaf1cf9b463dfc466"
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
-  depends_on "boost" => :build
-  depends_on "fftw"  => :build
-  depends_on "hdf5"  => :build
-  depends_on "libbiosig" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
   # depends_on "python"  => :build
@@ -19,6 +15,10 @@ class Stimfit < Formula
   # depends_on "schloegl/biosig/pyemf" => :build
   depends_on "swig" => :build
   depends_on "wxmac" => :build
+  depends_on "boost"
+  depends_on "fftw"
+  depends_on "hdf5"
+  depends_on "libbiosig"
   depends_on :x11
 
   def install
@@ -45,8 +45,8 @@ class Stimfit < Formula
 
   def caveats
     <<~EOS
-    This version of StimFit comes without python/wxpython support.
-    Accordingly, some features that require python are not available.
+      This version of StimFit comes without python/wxpython support.
+      Accordingly, some features that require python are not available.
     EOS
   end
 

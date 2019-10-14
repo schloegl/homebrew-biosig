@@ -9,11 +9,9 @@ class Libbiosig < Formula
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "pkg-config" => :build
-  depends_on "dcmtk" => :build
-  depends_on "tinyxml" => :build
-  depends_on "suite-sparse" => :build
-
-  #patch :DATA
+  depends_on "dcmtk"
+  depends_on "suite-sparse"
+  depends_on "tinyxml" # if version == "1.9.5"
 
   def install
     system "./configure", "--disable-debug",
@@ -36,9 +34,7 @@ class Libbiosig < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "ls", "/usr/local/lib/libbiosig.dylib"
+    ext = { true => "dylib", false => "so" }
+    system "ls", "/usr/local/lib/libbiosig." + ext[OS.mac?]
   end
 end
-
-__END__
-

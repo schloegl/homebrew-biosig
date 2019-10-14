@@ -13,7 +13,7 @@ class Libxdf < Formula
     include.mkpath
     include.install "./xdf.h"
     lib.mkpath
-    if OS.mac? then
+    if OS.mac?
       lib.install "libxdf.dylib"
     else
       lib.install "libxdf.so"

@@ -8,8 +8,8 @@ class Biosig < Formula
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
-  depends_on "libb64" => :build
-  depends_on "libbiosig" => :build
+  depends_on "libb64"
+  depends_on "libbiosig"
 
   def install
     system "./configure", "--disable-debug",
