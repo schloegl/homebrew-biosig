@@ -9,13 +9,13 @@ class Stimfit < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
-  # depends_on "python"  => :build
-  # depends_on "numpy" => :build
-  # depends_on "matplotlib" => :build
-  # depends_on "schloegl/biosig/pyemf" => :build
   depends_on "swig" => :build
   depends_on "wxmac" => :build
-  depends_on "boost"
+  depends_on "python"
+  depends_on "numpy"
+  # depends_on "matplotlib" => :build
+  # depends_on "schloegl/biosig/pyemf" => :build
+  # depends_on "boost"
   depends_on "fftw"
   depends_on "hdf5"
   depends_on "libbiosig"
@@ -33,7 +33,7 @@ class Stimfit < Formula
 
     ### TODO ###
     # cp "/Users/testuser/src/stimfit/Makefile.static", "Makefile.static"
-    system "curl -L https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static > Makefile.static"
+    # system "curl -L https://raw.githubusercontent.com/neurodroid/stimfit/master/Makefile.static > Makefile.static"
 
     system "make", "WXCONF=wx-config", "-f", "Makefile.static"
     bin.install "stimfit"
