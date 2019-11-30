@@ -20,7 +20,7 @@ class Biosig < Formula
                           "--prefix=#{prefix}"
 
     system "make"
-    system "make", "install_tools"
+    system "make", "install"
   end
 
   test do
