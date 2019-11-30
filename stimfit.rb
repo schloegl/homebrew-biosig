@@ -18,7 +18,7 @@ class Stimfit < Formula
   # depends_on "boost"
   depends_on "fftw"
   depends_on "hdf5"
-  depends_on "libbiosig"
+  depends_on "biosig"
   depends_on :x11
 
   def install

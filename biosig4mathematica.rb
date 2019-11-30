@@ -1,18 +1,15 @@
 class Biosig4mathematica < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
-  version "1.9.3"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.5.src.tar.gz"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "gnu-sed" => :build
-  depends_on "libbiosig" => :build
+  depends_on "biosig" => :build
   depends_on "ossp-uuid" => :build
 
   def install
-    #system "curl -L http://sourceforge.net/p/biosig/code/ci/master/tree/biosig4c++/Makefile.in?format=raw > Makefile.in"
-
     #ENV.deparallelize  # if your formula fails when building in parallel
 
     # Remove unrecognized options if warned by configure
@@ -21,16 +18,12 @@ class Biosig4mathematica < Formula
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
 
-    ## build mex for MATLAB: needs to define MATLABDIR, or some heuristic is used
-    #system "MATLABDIR= make mex4m; done"
-    #system "make mex4m -B"
-
     ## build sload for mathematica
     system "make mma -B && make install_mma"
   end
 
   def caveats; <<-EOS.undent
-    Biosig for Mathematica is installed in /usr/local/share/biosig/mathematica/sload.exe
+    Biosig for Mathematica is installed in /usr/local/share/biosig/mathematica/biosig.exe
     Usage: Start Mathematica and run
 
         link=Install["/usr/local/share/biosig/mathematica/sload.exe"];

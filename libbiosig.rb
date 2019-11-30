@@ -2,26 +2,26 @@ class Libbiosig < Formula
   desc "Biosig library"
   homepage "https://biosig.sourceforge.io"
   url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.5.src.tar.gz"
-  version "1.9.5"
   sha256 "20e72a5a07d1bf8baa649efe437b4d3ed99944f0e4dfc1fbe23bfbe4d9749ed5"
 
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
   depends_on "gnu-tar" => :build
   depends_on "pkg-config" => :build
-  depends_on "dcmtk"
-  depends_on "suite-sparse"
-  depends_on "tinyxml" # if version == "1.9.5"
+  depends_on "biosig"
 
   def install
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
+    system "true"
+    # prerequisite "biosig" installs also libbiosig - nothing more todo.
 
-    system "make"
-    system "make", "install_headers"
-    system "make", "install_libbiosig"
+    #system "./configure", "--disable-debug",
+    #                      "--disable-dependency-tracking",
+    #                      "--disable-silent-rules",
+    #                      "--prefix=#{prefix}"
+
+    #system "make"
+    #system "make", "install_headers"
+    #system "make", "install_libbiosig"
   end
 
   test do

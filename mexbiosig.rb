@@ -1,13 +1,12 @@
 class Mexbiosig < Formula
   homepage "http://biosig.sf.net"
-  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.3.src.tar.gz"
-  version "1.9.3"
+  url "http://sourceforge.net/projects/biosig/files/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-1.9.5.src.tar.gz"
   sha256 "d5cec2c1a563a3728854cf985111734089b90f35080629bacd5e894e9d1321e5"
 
   # depends_on "cmake" => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
   depends_on "gnu-tar" => :build
-  depends_on "libbiosig" => :build
+  depends_on "biosig" => :build
   depends_on "octave" => :build
 
   def install
@@ -18,7 +17,7 @@ class Mexbiosig < Formula
     #system "make mex4m -B"
 
     ## build mex for Octave
-    system "octave","--eval","'pkg install https://pub.ist.ac.at/~schloegl/biosig/prereleases/mexbiosig-1.9.3.src.tar.gz'"
+    system "octave","--eval","'pkg install https://pub.ist.ac.at/~schloegl/biosig/prereleases/mexbiosig-1.9.5.src.tar.gz'"
   end
 
   test do
