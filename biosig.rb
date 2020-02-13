@@ -13,6 +13,11 @@ class Biosig < Formula
   depends_on "suite-sparse"
   depends_on "tinyxml"
 
+  resource "test" do
+    url "https://pub.ist.ac.at/~schloegl/download/TEST_44x86_e1.GDF"
+    sha256 "75df4a79b8d3d785942cbfd125ce45de49c3e7fa2cd19adb70caf8c4e30e13f0"
+  end
+
   def install
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
@@ -24,11 +29,11 @@ class Biosig < Formula
   end
 
   test do
-    system "#{bin}/save2gdf", "-h"
-    assert_match "usage: save2gdf [OPTIONS] SOURCE DEST", shell_output("#{bin}/save2gdf -h | grep ^usage").strip
-    system "#{bin}/physicalunits"
+    assert_match "usage: save2gdf [OPTIONS] SOURCE DEST", shell_output("#{bin}/save2gdf -h").strip
     assert_match "mV\t4274\t0x10b2\t0.001\tV", shell_output("#{bin}/physicalunits mV").strip
-    system "#{bin}/biosig_fhir"
-    assert_match "biosig_fhir provides fhir binary template for biosignal data", shell_output("#{bin}/biosig_fhir 2>&1 >/dev/null |head -1").strip
+    assert_match "biosig_fhir provides fhir binary template for biosignal data", shell_output("#{bin}/biosig_fhir 2>&1").strip
+    testpath.install resource("test")
+    assert_match "NumberOfChannels", shell_output("#{bin}/save2gdf -json TEST_44x86_e1.GDF").strip
+    assert_match "NumberOfChannels", shell_output("#{bin}/biosig_fhir TEST_44x86_e1.GDF").strip
   end
 end
