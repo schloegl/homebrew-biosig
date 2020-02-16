@@ -1,15 +1,14 @@
 class Edfbrowser < Formula
   desc "Edfbrowser"
   homepage "https://www.teuniz.net/edfbrowser/"
-  version "1.70"
-  url "https://www.teuniz.net/edfbrowser/edfbrowser_170_source.tar.gz"
-  sha256 "206a19e47416c278fa161c6d9bd78a3a7dd5f2c2b88deb270fb3495ffd3f659d"
+  url "https://www.teuniz.net/edfbrowser/edfbrowser_172_source.tar.gz"
+  version "1.72"
+  sha256 "665c08062640904c21fa68f600423085d2bfc0227ea6ba24ffc2e2507fd00c2d"
 
   depends_on "gcc" => :build
   depends_on "qt"
 
   def install
-
     system "qmake"
     system "make"
 
@@ -17,15 +16,6 @@ class Edfbrowser < Formula
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! It's enough to just replace
-    # "false" with the main program this formula installs, but it'd be nice if you
-    # were more thorough. Run the test with `brew test sigviewer`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
     system "#{bin}/edfbrowser", "--help"
   end
 end
