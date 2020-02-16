@@ -1,5 +1,5 @@
 class Sigviewer < Formula
-  desc "Biomedical signal viewer "
+  desc "Biomedical signal viewer"
   homepage "https://github.com/schloegl/sigviewer"
   url "https://github.com/cbrnr/sigviewer/archive/v0.6.4.tar.gz"
   sha256 "e64516b0d5a2ac65b1ef496a6666cdac8919b67eecd8d5eb6b7cbf2493314367"
@@ -24,7 +24,7 @@ class Sigviewer < Formula
   end
 
   test do
-    system "#{bin}/sigviewer", "--help"
+    assert_match "SigViewer", shell_output("#{bin}/sigviewer --help").strip
   end
 end
 
