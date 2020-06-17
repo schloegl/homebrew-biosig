@@ -1,8 +1,8 @@
 class Biosig < Formula
   desc "Tools for biomedical signal processing and data conversion"
   homepage "https://biosig.sourceforge.io"
-  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig4c%2B%2B-2.0.1.src.tar.gz"
-  sha256 "b72ff4b67db5491dbe0b795d9328f454cd6ad3d4ac163ce99e12bf5002ff2791"
+  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig-2.0.3.src.tar.gz"
+  sha256 "9b072345d2ee4b5c399c3338bb080ecb82a2980c2e2ecf6df8da053d71d281d4"
 
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
