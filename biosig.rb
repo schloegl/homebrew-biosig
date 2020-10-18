@@ -16,8 +16,6 @@ class Biosig < Formula
   depends_on "gnu-tar" => :build
   depends_on "dcmtk"
   depends_on "libb64"
-  depends_on "numpy"  # => :optional
-  depends_on "octave" # => :optional
   depends_on "suite-sparse"
   depends_on "tinyxml"
   depends_on "octave" => :optional
@@ -47,10 +45,36 @@ class Biosig < Formula
     testpath.install resource("test")
     assert_match "NumberOfChannels", shell_output("#{bin}/save2gdf -json TEST_44x86_e1.GDF").strip
     assert_match "NumberOfChannels", shell_output("#{bin}/biosig_fhir TEST_44x86_e1.GDF").strip
-    assert_no_match "Error", shell_output("python3 -c 'import biosig'").strip
-    assert_match "mexSLOAD",
-      shell_output("octave --no-gui --norc --eval 'pkg load mexbiosig; which mexSLOAD; exit' ").strip
+    # assert_no_match "Error", shell_output("python3 -c 'import biosig'").strip
+    # assert_match "mexSLOAD",
+    #  shell_output("octave --no-gui --norc --eval 'pkg load mexbiosig; which mexSLOAD; exit' ").strip
   end
 end
 
 __END__
+
+diff --git a/Makefile.in b/Makefile.in
+index 38726564..3531a1e7 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -93,14 +93,14 @@ first ::
+ 	make -C biosig4c++ mexbiosig
+ install ::
+ 	# mexbiosig
+-	#-@OCTAVE@ --no-gui --eval "pkg install -global biosig4c++/mex/mexbiosig-@PACKAGE_VERSION@.src.tar.gz"
++	-@OCTAVE@ --no-gui --eval "pkg install -global biosig4c++/mex/mexbiosig-@PACKAGE_VERSION@.src.tar.gz"
+ 	# *.mex
+-	install -d $(BIOSIG_MEX_DIR)
+-	install biosig4c++/mex/*.mex $(BIOSIG_MEX_DIR)
++	# install -d $(BIOSIG_MEX_DIR)
++	# install biosig4c++/mex/*.mex $(BIOSIG_MEX_DIR)
+ 	# biosig for octave and matlab
+-	install -d $(BIOSIG_DIR)
+-	cp -r biosig4matlab/*  $(BIOSIG_DIR)
+-	-rm -rf $(BIOSIG_DIR)/maybe-missing
++	# install -d $(BIOSIG_DIR)
++	# cp -r biosig4matlab/*  $(BIOSIG_DIR)
++	# -rm -rf $(BIOSIG_DIR)/maybe-missing
+ 
+ uninstall ::
+ 	# mexbiosig
