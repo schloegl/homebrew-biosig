@@ -1,15 +1,21 @@
 class Biosig < Formula
   desc "Tools for biomedical signal processing and data conversion"
   homepage "https://biosig.sourceforge.io"
-  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig-2.1.0.src.tar.gz"
-  sha256 "562ff3d5aee834dc7d676128e769c8762e23a40e0c18e6995628ffdcaa3e1c7e"
-  license "GPL-3.0-only"
+  url "https://downloads.sourceforge.net/project/biosig/BioSig%20for%20C_C%2B%2B/src/biosig-2.1.1.src.tar.gz"
+  sha256 "808c6edef3ff7d0afe8bb59eb6cabd3d9023b7077aae84fb90923cbb845e4564"
+  license "GPL-3.0-or-later"
+
+  livecheck do
+    url :stable
+    regex(%r{url=.*?/(?:biosig|biosig4c[^-]*?)[._-]v?(\d+(?:\.\d+)+)\.src\.t}i)
+  end
 
   bottle do
     cellar :any
-    sha256 "7faee142a4545ee3bcfcd393b9c748b3cfa788a35a410e0299e562a58a026426" => :catalina
-    sha256 "4560a057f36948b31ceb176ca1edc978e8b1b5ac5f5a5a9b4ccafe9c32b7c787" => :mojave
-    sha256 "95e1c70220b78441a73db60830eb00dc380810e6b0aab5209cc00c51eaa36612" => :high_sierra
+    sha256 "3d9649438fd9e04c97bee4ad9595bfcbbe09ae83f914e8ddd011fef0705b5544" => :big_sur
+    sha256 "7ddfff1529286000cd32a28ce1bf735cfe810804c08b20eaa2fe39a587f8b73b" => :catalina
+    sha256 "4786b282a950d325f91d681615a9d60cc8335703f818d527c5d55f7718b206e9" => :mojave
+    sha256 "0818b0bdfe19286f9d18de35d5fa72981b4b1e1403083c92136c7d5c937dbe6f" => :high_sierra
   end
 
   depends_on "gawk" => :build
@@ -18,8 +24,6 @@ class Biosig < Formula
   depends_on "libb64"
   depends_on "suite-sparse"
   depends_on "tinyxml"
-  depends_on "octave" => :optional
-  depends_on "numpy"  => :optional
 
   resource "test" do
     url "https://pub.ist.ac.at/~schloegl/download/TEST_44x86_e1.GDF"
@@ -29,11 +33,11 @@ class Biosig < Formula
   patch :DATA
 
   def install
-    system "./configure", "CC=gcc-10", "CXX=g++-10", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
-    system "make", "CC=gcc-10", "CXX=g++-10"
+    system "./configure", "--disable-debug",
+           "--disable-dependency-tracking",
+           "--disable-silent-rules",
+           "--prefix=#{prefix}"
+    system "make"
     system "make", "install"
   end
 
@@ -41,40 +45,42 @@ class Biosig < Formula
     assert_match "usage: save2gdf [OPTIONS] SOURCE DEST", shell_output("#{bin}/save2gdf -h").strip
     assert_match "mV\t4274\t0x10b2\t0.001\tV", shell_output("#{bin}/physicalunits mV").strip
     assert_match "biosig_fhir provides fhir binary template for biosignal data",
-      shell_output("#{bin}/biosig_fhir 2>&1").strip
+                 shell_output("#{bin}/biosig_fhir 2>&1").strip
     testpath.install resource("test")
     assert_match "NumberOfChannels", shell_output("#{bin}/save2gdf -json TEST_44x86_e1.GDF").strip
     assert_match "NumberOfChannels", shell_output("#{bin}/biosig_fhir TEST_44x86_e1.GDF").strip
-    # assert_no_match "Error", shell_output("python3 -c 'import biosig'").strip
-    # assert_match "mexSLOAD",
-    #  shell_output("octave --no-gui --norc --eval 'pkg load mexbiosig; which mexSLOAD; exit' ").strip
   end
 end
 
 __END__
-
 diff --git a/Makefile.in b/Makefile.in
-index 38726564..3531a1e7 100644
+index de1eaf5c..6a6642ab 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -93,14 +93,14 @@ first ::
- 	make -C biosig4c++ mexbiosig
- install ::
- 	# mexbiosig
--	#-@OCTAVE@ --no-gui --eval "pkg install -global biosig4c++/mex/mexbiosig-@PACKAGE_VERSION@.src.tar.gz"
-+	-@OCTAVE@ --no-gui --eval "pkg install -global biosig4c++/mex/mexbiosig-@PACKAGE_VERSION@.src.tar.gz"
- 	# *.mex
--	install -d $(BIOSIG_MEX_DIR)
--	install biosig4c++/mex/*.mex $(BIOSIG_MEX_DIR)
-+	# install -d $(BIOSIG_MEX_DIR)
-+	# install biosig4c++/mex/*.mex $(BIOSIG_MEX_DIR)
- 	# biosig for octave and matlab
--	install -d $(BIOSIG_DIR)
--	cp -r biosig4matlab/*  $(BIOSIG_DIR)
--	-rm -rf $(BIOSIG_DIR)/maybe-missing
-+	# install -d $(BIOSIG_DIR)
-+	# cp -r biosig4matlab/*  $(BIOSIG_DIR)
-+	# -rm -rf $(BIOSIG_DIR)/maybe-missing
- 
+@@ -116,11 +116,11 @@ ifneq (:,@PYTHON3@)
+ first biosig4c++/python/dist/Biosig-@PACKAGE_VERSION@.tar.gz ::
+ 	-PYTHON=@PYTHON3@ make -C biosig4c++/python dist/Biosig-@PACKAGE_VERSION@.tar.gz
+ install :: biosig4c++/python/dist/Biosig-@PACKAGE_VERSION@.tar.gz
+-	@PYTHON3@ -m pip install $<
++	-@PYTHON3@ -m pip install $<
+ 	-$(foreach py, $(shell pyversions -i),  $(py) -m pip install $<;)
+ 	-$(foreach py, $(shell py3versions -i), $(py) -m pip install $<;)
  uninstall ::
- 	# mexbiosig
+-	@PYTHON3@ -m pip uninstall -y $<
++	-@PYTHON3@ -m pip uninstall -y $<
+ 	-$(foreach py, $(shell pyversions -i),  $(py) -m pip uninstall -y Biosig;)
+ 	-$(foreach py, $(shell py3versions -i), $(py) -m pip uninstall -y Biosig;)
+ clean ::
+diff --git a/biosig4c++/Makefile.in b/biosig4c++/Makefile.in
+index 0e947b0a..b48c76c1 100644
+--- a/biosig4c++/Makefile.in
++++ b/biosig4c++/Makefile.in
+@@ -979,7 +979,7 @@ uninstall_tools:
+ 	${RM} $(DESTDIR)$(bindir)/{heka2itx,bin2rec,rec2bin,save2aecg,save2scp}
+ 	${RM} $(DESTDIR)$(bindir)/biosig_fhir${BINEXT}
+ 	${RM} $(DESTDIR)$(mandir)/man1/physicalunits.1
+-	${RM} $(DESTDIR)$(mandir)/man1/{save2gdf,biosig_fhir}.1
++	${RM} $(DESTDIR)$(mandir)/man1/{save2gdf,biosig_fhir,biosig2gdf}.1
+ 	${RM} $(DESTDIR)$(mandir)/man1/{heka2itx,bin2rec,rec2bin,save2aecg,save2scp}.1
+ 
+ ### Install mexbiosig for Octave
