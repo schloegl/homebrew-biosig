@@ -1,30 +1,30 @@
 class Sigviewer < Formula
-  desc "Biomedical signal viewer"
-  homepage "https://github.com/schloegl/sigviewer"
-  url "https://github.com/cbrnr/sigviewer/archive/v0.6.4.tar.gz"
-  sha256 "e64516b0d5a2ac65b1ef496a6666cdac8919b67eecd8d5eb6b7cbf2493314367"
+  desc 'Biomedical signal viewer'
+  homepage 'https://github.com/schloegl/sigviewer'
+  url 'https://github.com/cbrnr/sigviewer/archive/v0.6.4.tar.gz'
+  sha256 'e64516b0d5a2ac65b1ef496a6666cdac8919b67eecd8d5eb6b7cbf2493314367'
 
-  depends_on "gcc" => :build
-  depends_on "gnu-sed" => :build
-  depends_on "pkg-config" => :build
-  depends_on "biosig"
-  depends_on "libxdf"
-  depends_on "qt"
+  depends_on 'gcc' => :build
+  depends_on 'gnu-sed' => :build
+  depends_on 'pkg-config' => :build
+  depends_on 'biosig'
+  depends_on 'libxdf'
+  depends_on 'qt@5'
 
   patch :DATA
 
   def install
     # apply patch
-    system "gsed", "-i", "s|$$PWD/external/|/usr/local/|g", "sigviewer.pro"
+    system 'gsed', '-i', 's|$$PWD/external/|/usr/local/|g', 'sigviewer.pro'
 
-    system "qmake", "sigviewer.pro"
-    system "make"
+    system 'qmake', 'sigviewer.pro'
+    system 'make'
 
-    bin.install "bin/release/sigviewer.app/Contents/MacOS/sigviewer"
+    bin.install 'bin/release/sigviewer.app/Contents/MacOS/sigviewer'
   end
 
   test do
-    assert_match "SigViewer", shell_output("#{bin}/sigviewer --help").strip
+    assert_match 'SigViewer', shell_output("#{bin}/sigviewer --help").strip
   end
 end
 
@@ -298,19 +298,6 @@ index 8c37f8a..87e5aa9 100644
          if (applicationContext()->getCurrentFileContext()->getFileName().endsWith("xdf"))
              no_gdf_file_open = false;//Disabled because currently XDF to GDF conversion doesn't work
      }
-diff --git a/src/gui_impl/dialogs/about_dialog.ui b/src/gui_impl/dialogs/about_dialog.ui
-index 4223e03..4818122 100644
---- a/src/gui_impl/dialogs/about_dialog.ui
-+++ b/src/gui_impl/dialogs/about_dialog.ui
-@@ -36,7 +36,7 @@
-         </sizepolicy>
-        </property>
-        <property name="text">
--        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SigViewer&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Version VERSION_MAJOR.VERSION_MINOR.VERSION_BUILD&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/cbrnr/sigviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;github.com/cbrnr/sigviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GNU GPL&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SigViewer&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Version VERSION_MAJOR.VERSION_MINOR.VERSION_BUILD&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://git.ist.ac.at/alois.schloegl/sigviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;git.ist.ac.at/alois.schloegl/sigviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GNU GPL&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
- </string>
-        </property>
-        <property name="textFormat">
 diff --git a/src/main.cpp b/src/main.cpp
 index a08546e..e2030c0 100644
 --- a/src/main.cpp
