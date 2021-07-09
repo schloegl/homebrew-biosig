@@ -19,7 +19,9 @@ class Stimfit < Formula
   depends_on "fftw"
   depends_on "hdf5"
   depends_on "biosig"
-  depends_on :x11
+  depends_on "libx11"
+
+  patch :DATA
 
   def install
     ENV.deparallelize
@@ -63,3 +65,54 @@ class Stimfit < Formula
     system "#{bin}/stimfit"
   end
 end
+
+__END__
+
+diff --git a/src/stimfit/gui/childframe.cpp b/src/stimfit/gui/childframe.cpp
+index 3be0e005..735eee9b 100755
+--- a/src/stimfit/gui/childframe.cpp
++++ b/src/stimfit/gui/childframe.cpp
+@@ -498,10 +498,10 @@ void wxStfChildFrame::ShowTable(const stfnum::Table &table,const wxString& capti
+     wxStfGrid* pGrid = new wxStfGrid( m_notebook, wxID_ANY, wxPoint(0,20), wxDefaultSize );
+     wxStfTable* pTable(new wxStfTable(table));
+     pGrid->SetTable(pTable,true); // the grid will take care of the deletion
+-    pGrid->SetEditable(false);
++    pGrid->EnableEditing(false);
+     pGrid->SetDefaultCellAlignment(wxALIGN_RIGHT,wxALIGN_CENTRE);
+     for (std::size_t n_row=0; n_row<=table.nRows()+1; ++n_row) {
+-        pGrid->SetCellAlignment(wxALIGN_LEFT,(int)n_row,0);
++        pGrid->SetCellAlignment((int)n_row, 0, wxALIGN_LEFT, wxALIGN_CENTRE);
+     }
+     m_notebook->AddPage( pGrid, caption, true );
+ 
+diff -u a/Makefile.static b/Makefile.static 
+--- a/Makefile.static
++++ b/Makefile.static
+@@ -251,7 +256,7 @@
+     LDFLAGS  += -L/usr/lib/$(PLATFORM)
+     LIBS     += -lhdf5_serial_hl -lhdf5_serial
+   else
+-    LIBS     += -lhdf5_hl -lhdf5
++    LIBS     += -lhdf5_hl -lhdf5 -lz
+   endif
+ endif
+ endif
+@@ -258,7 +258,7 @@
+ 
+ ## BIOSIG related stuff ##
+ ifneq (,$(findstring WITH_BIOSIG2, $(DEFINES)))
+-  LIBS  += -lbiosig2
++  LIBS  += -lbiosig
+ else 
+   ifneq (,$(findstring WITH_BIOSIG, $(DEFINES)))
+     LIBS  += -lbiosig
+@@ -273,8 +278,8 @@
+ 
+ ifeq (mingw,$(findstring mingw, $(WXCONF)))
+   LIBS   += -lgfortran -lquadmath
+-  LIBS   += -liberty -liconv
+ endif
++LIBS   += -ltinyxml -lstdc++
+ 
+ 
+ ##############################################################
