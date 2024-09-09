@@ -18,7 +18,7 @@ class Stimfit < Formula
   depends_on "hdf5"
   depends_on "libx11"
   depends_on "numpy"
-  depends_on "matplotlib"
+  depends_on "python-matplotlib"
   depends_on "python"
   depends_on "wxpython"
   depends_on "wxwidgets"
