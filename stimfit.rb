@@ -13,33 +13,31 @@ class Stimfit < Formula
   depends_on "swig" => :build
   # depends_on "matplotlib" => :build
   depends_on "biosig"
-  depends_on "boost"
   depends_on "fftw"
   depends_on "hdf5"
   depends_on "libx11"
-  depends_on "numpy"
-  depends_on "python-matplotlib"
-  depends_on "python"
-  depends_on "wxpython"
+  # depends_on "numpy"
+  # depends_on "python-matplotlib"
+  # depends_on "python"
+  # depends_on "wxpython"
   depends_on "wxwidgets"
 
   # patch :DATA
 
   def install
-    # ENV.deparallelize
-    system "./autogen.sh && autoconf && automake"
+    ENV.deparallelize
+    system "./autogen.sh && autoconf"
 
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
-                          "--enable-python",
+                          "--disable-python",
                           "--with-biosig",
                           "--with-pslope"
 
-    system "make"
-    system "make", "install"
-    #bin.install "stimfit"
+    system "make", "WXCONF=wx-config", "-f", "Makefile.static"
+    bin.install "stimfit"
   end
 
   def uninstall
@@ -48,9 +46,8 @@ class Stimfit < Formula
 
   def caveats
     <<~EOS
-      This recipe is work-in-progress. 
-      Stimfit compiles, but the final installation step needs some fixing.
-      Unless this is fixed, Stimfit might not be usable. 
+      This version of StimFit comes without python/wxpython support.
+      Accordingly, some features that require python are not available.
     EOS
   end
 
