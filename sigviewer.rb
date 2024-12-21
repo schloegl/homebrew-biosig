@@ -15,7 +15,7 @@ class Sigviewer < Formula
 
   def install
     # apply patch
-    system 'gsed', '-i', 's|$$PWD/external/|/usr/local/|g', 'sigviewer.pro'
+    system 'gsed', '-i', 's|$$PWD/external/|/opt/homebrew/|g', 'sigviewer.pro'
 
     system 'qmake', 'sigviewer.pro'
     system 'make'
@@ -289,15 +289,6 @@ index 8c37f8a..87e5aa9 100644
          }
  
          std::sort(events.begin(),
-@@ -347,7 +350,7 @@ void SaveGuiCommand::evaluateEnabledness ()
-         no_gdf_file_open = !(applicationContext()->getCurrentFileContext()->getFileName().endsWith("gdf"));
-         file_changed = (getFileState () == FILE_STATE_CHANGED);
-         has_events = applicationContext()->getCurrentFileContext()->getEventManager()->getNumberOfEvents() > 0;
--      
-+
-         if (applicationContext()->getCurrentFileContext()->getFileName().endsWith("xdf"))
-             no_gdf_file_open = false;//Disabled because currently XDF to GDF conversion doesn't work
-     }
 diff --git a/src/main.cpp b/src/main.cpp
 index a08546e..e2030c0 100644
 --- a/src/main.cpp
