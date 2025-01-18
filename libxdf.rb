@@ -1,8 +1,8 @@
 class Libxdf < Formula
   desc "C++ library for loading XDF files"
   homepage "https://github.com/Yida-Lin/libxdf"
-  url "https://github.com/xdf-modules/libxdf/archive/v0.99.tar.gz"
-  sha256 "af66f6c1be5d9342fa33bc2a3b34c5a962db37d10623df57d352a213fe5201d1"
+  url "https://github.com/xdf-modules/libxdf/archive/v0.99.9.tar.gz"
+  sha256 "69669a9cbcdb1edd5befe12dc8eada3f889bcb63412fb7dbc10769563f9ac7f8"
 
   depends_on "cmake" => :build
 
@@ -13,11 +13,6 @@ class Libxdf < Formula
     include.mkpath
     include.install "./xdf.h"
     lib.mkpath
-    if OS.mac?
-      lib.install "libxdf.dylib"
-    else
-      lib.install "libxdf.so"
-    end
     lib.install "libxdf.a"
   end
 
