@@ -5,7 +5,6 @@ class Sigviewer < Formula
   sha256 'e64516b0d5a2ac65b1ef496a6666cdac8919b67eecd8d5eb6b7cbf2493314367'
 
   depends_on 'gcc' => :build
-  depends_on 'gnu-sed' => :build
   depends_on 'pkg-config' => :build
   depends_on 'biosig'
   depends_on 'libxdf'
@@ -14,13 +13,14 @@ class Sigviewer < Formula
   patch :DATA
 
   def install
-    # apply patch
-    system 'gsed', '-i', 's|$$PWD/external/|/opt/homebrew/|g', 'sigviewer.pro'
-
     system 'qmake', 'sigviewer.pro'
     system 'make'
 
-    bin.install 'bin/release/sigviewer.app/Contents/MacOS/sigviewer'
+    if OS.mac?
+      bin.install 'bin/release/sigviewer.app/Contents/MacOS/sigviewer'
+    else
+      bin.install 'bin/release/sigviewer'
+    end
   end
 
   test do
