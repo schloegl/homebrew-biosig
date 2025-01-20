@@ -1,18 +1,22 @@
 class Edfbrowser < Formula
   desc "Edfbrowser"
   homepage "https://www.teuniz.net/edfbrowser/"
-  url "https://www.teuniz.net/edfbrowser/edfbrowser_172_source.tar.gz"
-  version "1.72"
-  sha256 "665c08062640904c21fa68f600423085d2bfc0227ea6ba24ffc2e2507fd00c2d"
+  url "https://www.teuniz.net/edfbrowser/edfbrowser_212_source.tar.gz"
+  version "2.12"
+  sha256 "018269db671af4fc00dacea93e8edab2dbf0f0ef93bed2ce75cb07075c0bcaa2"
 
   depends_on "gcc" => :build
-  depends_on "qt"
+  depends_on "qt@5"
 
   def install
     system "qmake"
     system "make"
 
-    bin.install "edfbrowser.app/Contents/MacOS/edfbrowser"
+    if OS.mac?
+      bin.install 'edfbrowser.app/Contents/MacOS/edfbrowser'
+    else
+      bin.install 'edfbrowser'
+    end
   end
 
   test do
