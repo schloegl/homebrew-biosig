@@ -1,9 +1,9 @@
 class Stimfit < Formula
   desc "Fast and simple program for viewing and analyzing electrophyiological data"
   homepage "https://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/refs/tags/v0.16.5debian.tar.gz"
-  version "0.16.5"
-  sha256 "2b95f353749ca4228fde15b10976b58e08021fcdba011696ce22ca6020bcdc14"
+  url "https://github.com/neurodroid/stimfit/archive/refs/tags/v0.16.6debian.tar.gz"
+  version "0.16.6"
+  sha256 "efd88f5c167fbeb2c00cbcb4b2a2293fa4d0ef6507617cc26262ffa0f2e08c6f"
   license "GPL-3.0-or-later"
 
   depends_on "autoconf" => :build
@@ -23,7 +23,7 @@ class Stimfit < Formula
   depends_on "tinyxml"
   depends_on "wxwidgets"
 
-  # patch :DATA
+  patch :DATA
 
   def install
     ENV.deparallelize
@@ -69,3 +69,18 @@ end
 
 __END__
 
+diff --git a/Makefile.static.in b/Makefile.static.in
+index d7da6a5c..750fd11e 100644
+--- a/Makefile.static.in
++++ b/Makefile.static.in
+@@ -193,8 +193,8 @@ endif
+ CC       ?= $(shell $(WXCONF) --cc)
+ CXX      ?= $(shell $(WXCONF) --cxx)
+ LD        = $(shell $(WXCONF) --ld)
+-CFLAGS   += $(DEFINES) $(shell $(WXCONF) --cflags) -fstack-protector -O2
+-CPPFLAGS += $(DEFINES) $(shell $(WXCONF) --cppflags) -std=c++17 -fstack-protector -O2
++CFLAGS   += $(DEFINES) $(shell $(WXCONF) --cflags) -fstack-protector -O2 -I./
++CPPFLAGS += $(DEFINES) $(shell $(WXCONF) --cppflags) -std=c++17 -fstack-protector -O2 -I./
+ LIBS     += $(shell $(WXCONF) --libs net,adv,aui,core,base)
+ SWIG	  = @SWIG@
+ SWIG_PYTHON_OPT = @SWIG_PYTHON_OPT@
