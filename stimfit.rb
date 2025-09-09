@@ -1,17 +1,17 @@
 class Stimfit < Formula
   desc "Fast and simple program for viewing and analyzing electrophyiological data"
   homepage "https://stimfit.org"
-  url "https://github.com/neurodroid/stimfit/archive/refs/tags/v0.16.6debian.tar.gz"
-  version "0.16.6"
-  sha256 "efd88f5c167fbeb2c00cbcb4b2a2293fa4d0ef6507617cc26262ffa0f2e08c6f"
+  url "https://github.com/neurodroid/stimfit/archive/refs/tags/v0.16.9.tar.gz"
+  version "0.16.9"
+  # sha256 "9d7e8b9ca3ab10990230b17d8a47ac2bd25d32c7d501fac1e1768980c548195e"
   license "GPL-3.0-or-later"
 
   depends_on "autoconf" => :build
-  depends_on "automake" => :build
-  depends_on "gcc" => :build
-  depends_on "libtool" => :build
+  # depends_on "automake" => :build
+  # depends_on "libtool" => :build
   depends_on "pkg-config" => :build
-  depends_on "swig" => :build
+  # depends_on "swig" => :build
+  # depends_on "matplotlib" => :build
   depends_on "biosig"
   depends_on "fftw"
   depends_on "hdf5"
@@ -33,8 +33,7 @@ class Stimfit < Formula
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--disable-python",
-                          "--with-biosig",
-                          "--with-pslope"
+                          "--with-biosig"
 
     system "make", "WXCONF=wx-config", "-f", "Makefile.static"
     # system "make", "WXCONF=wx-config", "CC=gcc-14", "CXX=g++-14", "-f", "Makefile.static"
