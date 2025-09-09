@@ -20,7 +20,7 @@ class Stimfit < Formula
   # depends_on "python-matplotlib"
   # depends_on "python"
   # depends_on "wxpython"
-  depends_on "tinyxml"
+  # depends_on "tinyxml"
   depends_on "wxwidgets"
 
   patch :DATA
